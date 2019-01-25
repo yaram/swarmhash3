@@ -25,7 +25,7 @@ function hash(data: Uint8Array): Uint8Array{
     return new Uint8Array(keccak256.arrayBuffer(section));
 }
 
-export default function bmtHash(data: Uint8Array, maxDataLength: number = data.length): Uint8Array{
+export default function bmtHash(data: Uint8Array, maxDataLength: number): Uint8Array{
     const dataSectionCount = Math.ceil(maxDataLength / sectionLength);
 
     let alignedDataSectionCount = 1;
