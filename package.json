@@ -1,0 +1,23 @@
+{
+  "name": "swarmhash3",
+  "version": "0.1.0",
+  "description": "An implementation of Swarm Hash as it is implemented in Swarm PoC3",
+  "main": "dist/swarmhash.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc --build tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaram/swarmhash3.git"
+  },
+  "author": "Yaram <pootisspencerherenao@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yaram/swarmhash3/issues"
+  },
+  "homepage": "https://github.com/yaram/swarmhash3#readme"
+}
