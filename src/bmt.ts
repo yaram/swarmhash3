@@ -15,8 +15,8 @@ function hash(data: Uint8Array): Uint8Array{
 
         const halfLength = data.length / 2;
 
-        const firstHalfHash = hash(data.slice(0, halfLength));
-        const secondHalfHash = hash(data.slice(halfLength));
+        const firstHalfHash = hash(data.subarray(0, halfLength));
+        const secondHalfHash = hash(data.subarray(halfLength));
 
         section.set(firstHalfHash);
         section.set(secondHalfHash, hashLength);
