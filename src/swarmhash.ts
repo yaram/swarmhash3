@@ -37,7 +37,7 @@ export default function swarmHash(data: Uint8Array): Uint8Array{
             childChunkHashes.push(childChunkHash);
         }
 
-        content = new Uint8Array(childChunkHashes.length);
+        content = new Uint8Array(childChunkHashes.length * hashLength);
 
         for(let i = 0; i < childChunkHashes.length; i++){
             const childChunkHash = childChunkHashes[i];
