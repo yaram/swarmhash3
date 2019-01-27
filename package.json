@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "An implementation of Swarm Hash as it is implemented in Swarm PoC3",
   "main": "dist/swarmHash.js",
+  "types": "dist/swarmHash.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc --build tsconfig.json"
