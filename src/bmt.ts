@@ -11,7 +11,7 @@ function hash(data: Uint8Array): Uint8Array{
     if(data.length == sectionLength){
         section = data;
     }else{
-        section = new Uint8Array(data.length);
+        section = new Uint8Array(sectionLength);
 
         const halfLength = data.length / 2;
 
