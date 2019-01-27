@@ -1,12 +1,13 @@
 // Implementation based on https://github.com/ethereum/go-ethereum/tree/swarm/storage and Swarm documentation
 
 import chunkHash from './chunkHash';
+import {TextEncoder} from 'text-encoding-shim';
 
 const hashLength = 256 / 8;
 const chunkLength = 4096;
 const hashesPerChunk = chunkLength / hashLength;
 
-export default function swarmHash(data: Uint8Array): Uint8Array{
+function hash(data: Uint8Array): Uint8Array{
     if(data.length == 0){
         return new Uint8Array(hashLength);
     }
@@ -77,4 +78,26 @@ export default function swarmHash(data: Uint8Array): Uint8Array{
     }
 
     return latestChunks[0].hash;
+}
+
+export default function swarmHash(data: string | Uint8Array | ArrayBuffer): string{
+    let dataArray: Uint8Array;
+
+    if(typeof(data) == 'string'){
+        dataArray = new TextEncoder().encode(data);
+    }else if(data instanceof ArrayBuffer){
+        dataArray = new Uint8Array(data);
+    }else{
+        dataArray = data;
+    }
+
+    const dataHash = hash(dataArray);
+
+    let dataHashHex = '';
+
+    dataHash.forEach((byte) => {
+        dataHashHex += ('0' + byte.toString(16)).slice(-2);
+    });
+
+    return dataHashHex;
 }
