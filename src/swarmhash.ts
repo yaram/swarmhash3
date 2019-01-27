@@ -1,24 +1,10 @@
 // Implementation based on https://github.com/ethereum/go-ethereum/tree/swarm/storage and Swarm documentation
 
-import {keccak256} from 'js-sha3';
-import bmtHash from './bmt';
+import chunkHash from './chunkHash';
 
 const hashLength = 256 / 8;
 const chunkLength = 4096;
 const hashesPerChunk = chunkLength / hashLength;
-
-function hashChunk(content: Uint8Array, totalLength: number): Uint8Array{
-    const contentHash = bmtHash(content, chunkLength);
-
-    const buffer = new Uint8Array(8 + hashLength);
-
-    const bufferView = new DataView(buffer.buffer);
-    bufferView.setUint32(0, totalLength, true);
-
-    buffer.set(contentHash, 8);
-
-    return new Uint8Array(keccak256.arrayBuffer(buffer));
-}
 
 export default function swarmHash(data: Uint8Array): Uint8Array{
     if(data.length == 0){
@@ -43,9 +29,10 @@ export default function swarmHash(data: Uint8Array): Uint8Array{
             leafChunkLength = data.length - leafChunkOffset;
         }
 
-        const leafChunkContent = data.subarray(leafChunkOffset, leafChunkOffset + leafChunkLength);
+        const leafChunkContent = new Uint8Array(chunkLength);
+        leafChunkContent.set(data.subarray(leafChunkOffset, leafChunkOffset + leafChunkLength));
 
-        const leafChunkHash = hashChunk(leafChunkContent, leafChunkLength);
+        const leafChunkHash = chunkHash(leafChunkContent, leafChunkLength);
 
         latestChunks.push({
             length: leafChunkLength,
@@ -67,7 +54,7 @@ export default function swarmHash(data: Uint8Array): Uint8Array{
                 branchChunkChildCount = latestChunks.length - branchChunkOffset;
             }
 
-            const branchChunkContent = new Uint8Array(branchChunkChildCount * hashLength);
+            const branchChunkContent = new Uint8Array(chunkLength);
             let branchChunkTotalLength = 0;
 
             for(let j = 0; j < branchChunkChildCount; j++){
@@ -78,7 +65,7 @@ export default function swarmHash(data: Uint8Array): Uint8Array{
                 branchChunkTotalLength += latestChunks[childChunkIndex].length;
             }
 
-            const branchChunkHash = hashChunk(branchChunkContent, branchChunkTotalLength);
+            const branchChunkHash = chunkHash(branchChunkContent, branchChunkTotalLength);
 
             nextChunks.push({
                 length: branchChunkTotalLength,
