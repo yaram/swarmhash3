@@ -1,7 +1,7 @@
 // Implementation based on https://github.com/ethereum/go-ethereum/tree/swarm and Swarm documentation
 
 import {keccak256} from 'js-sha3';
-import bmtHash from './bmt';
+import bmtHash from './bmtHash';
 
 const hashLength = 256 / 8;
 
