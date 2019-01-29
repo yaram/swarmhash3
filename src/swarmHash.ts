@@ -99,4 +99,6 @@ function swarmHash(data: string | Uint8Array | ArrayBuffer): string{
     return dataHashHex;
 }
 
+module swarmHash{}
+
 export = swarmHash;
