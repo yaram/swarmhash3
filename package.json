@@ -6,13 +6,19 @@
   "types": "dist/swarmHash.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "build": "tsc --build tsconfig.json"
+    "build": "tsc --build tsconfig.json",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "dependencies": {
     "js-sha3": "^0.8.0",
     "text-encoding-shim": "^1.0.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^8.0.2",
     "typescript": "^3.2.4"
   },
   "repository": {
