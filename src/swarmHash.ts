@@ -2,10 +2,7 @@
 
 import chunkHash from './chunkHash';
 import {TextEncoder} from 'text-encoding-shim';
-
-const hashLength = 256 / 8;
-const chunkLength = 4096;
-const hashesPerChunk = chunkLength / hashLength;
+import {hashLength, chunkLength, hashesPerChunk} from './constants';
 
 function hash(data: Uint8Array): Uint8Array{
     if(data.length == 0){

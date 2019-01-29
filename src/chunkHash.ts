@@ -2,8 +2,7 @@
 
 import {keccak256} from 'js-sha3';
 import bmtHash from './bmtHash';
-
-const hashLength = 256 / 8;
+import {hashLength} from './constants';
 
 export default function chunkHash(content: Uint8Array, totalLength: number): Uint8Array{
     const contentHash = bmtHash(content);

@@ -1,8 +1,7 @@
 // Implementation based on https://github.com/ethereum/go-ethereum/tree/swarm/bmt and Swarm documentation
 
 import {keccak256} from 'js-sha3';
-
-const hashLength = 256 / 8;
+import {hashLength} from './constants';
 
 export default function bmtHash(data: Uint8Array): Uint8Array{
     let section: Uint8Array;
