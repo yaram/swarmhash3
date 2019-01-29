@@ -25,5 +25,9 @@
     "url": "https://github.com/yaram/swarmhash3/issues"
   },
   "homepage": "https://github.com/yaram/swarmhash3#readme",
-  "keywords": ["ethereum", "swarm", "hash"]
+  "keywords": [
+    "ethereum",
+    "swarm",
+    "hash"
+  ]
 }
