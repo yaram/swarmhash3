@@ -80,7 +80,7 @@ function hash(data: Uint8Array): Uint8Array{
     return latestChunks[0].hash;
 }
 
-export default function swarmHash(data: string | Uint8Array | ArrayBuffer): string{
+function swarmHash(data: string | Uint8Array | ArrayBuffer): string{
     let dataArray: Uint8Array;
 
     if(typeof(data) == 'string'){
@@ -101,3 +101,5 @@ export default function swarmHash(data: string | Uint8Array | ArrayBuffer): stri
 
     return dataHashHex;
 }
+
+export = swarmHash;
